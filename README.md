@@ -1,2 +1,2 @@
-# JetsonTX2_Object_Detection_Setup
+# JetsonTX2 Object Detection Setup
 A hassle free setup for the jetson
