@@ -6,6 +6,9 @@ A hassle free setup for the jetson
 sudo apt-get update
 ```
 
+## Change Default Installation Dir
+TODO:
+
 ## Install A Jetson Monitoring Tool (Optional)
 Jetson Stats provides general information for all your jetson needs!
 ```
@@ -14,6 +17,13 @@ sudo -H pip install jetson-stats
 To run write
 ```
 sudo jtop
+```
+
+## Cleanup Disk Space
+```
+sudo apt-get clean
+sudo apt-get autoremove --purge
+sudo apt-get autoremove
 ```
 
 ## Install Jetpack
