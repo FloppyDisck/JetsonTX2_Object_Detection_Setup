@@ -45,4 +45,7 @@ Run the instalation script and specify the python interpreter
 ```
 
 ## Install OpenCV
-TODO: actually get opencv to install...
+Run the provided script
+```
+sudo bash opencv-4-tx2.sh
+```
