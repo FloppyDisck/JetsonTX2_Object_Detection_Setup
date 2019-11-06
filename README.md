@@ -11,6 +11,10 @@ Jetson Stats provides general information for all your jetson needs!
 ```
 sudo -H pip install jetson-stats
 ```
+To run write
+```
+sudo jtop
+```
 
 ## Install Jetpack
 TODO: Setup the install jetpack instructions in the weekend by recording my experience on my server
