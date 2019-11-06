@@ -6,6 +6,12 @@ A hassle free setup for the jetson
 sudo apt-get update
 ```
 
+## Install A Jetson Monitoring Tool (Optional)
+Jetson Stats provides general information for all your jetson needs!
+```
+sudo -H pip install jetson-stats
+```
+
 ## Install Jetpack
 TODO: Setup the install jetpack instructions in the weekend by recording my experience on my server
 
