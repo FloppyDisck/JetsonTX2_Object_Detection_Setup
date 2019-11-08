@@ -1,10 +1,37 @@
 # JetsonTX2 Object Detection Setup
 A hassle free setup for the jetson
 
-## Standard Linux Setup
+## Boot from SSD
+A good recomendation is to backup all your data and then do a fresh install.
+After the initial setup create a GPT and partition with gdisk on the ssd
+```
+sudo gdisk /dev/${drive}
+```
+Check and copy that partition UUID
+```
+sudo blkid /dev/${drive}${partition_number}
+```
+Copy that PARTUUID over to l4t-rootfs-uuid.txt
+```
+sudo nano /Linux_for_Tegra/bootloader/l4t-rootfs-uuid.txt
+```
+Check the PARTUUID again
+```
+sudo mkfs.ext4 /dev/${drive}${partition_number}
+```
+Copy the rootfs folder over to the SSD using rsync
 ```
 sudo apt-get update
+sudo apt-get install rsync
+
+rsync -av --progress '/rootfs/location' '/mnt/yourssd'
 ```
+Once the copy has been completed cd over to the rootfs folder located in your ssd partition and flash
+```
+sudo ./flash jetson-tx2 external
+```
+Once this is all completed and the jetson boots up, use the sdkmanager to ONLY install SDK components
+
 ## Install A Jetson Monitoring Tool (Optional)
 Jetson Stats provides general information for all your jetson needs!
 ```
@@ -14,16 +41,6 @@ To run write
 ```
 sudo jtop
 ```
-
-## Cleanup Disk Space
-```
-sudo apt-get clean
-sudo apt-get autoremove --purge
-sudo apt-get autoremove
-```
-
-## Install Jetpack
-TODO: Setup the install jetpack instructions in the weekend by recording my experience on my server
 
 ## Install Tensor Flow
 First install the required system packages
