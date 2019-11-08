@@ -19,14 +19,15 @@ Check the PARTUUID again
 ```
 sudo mkfs.ext4 /dev/${drive}${partition_number}
 ```
-Copy the rootfs folder over to the SSD using rsync
+Copy rootfs (system.img.raw), found in the computer used to flash the jetson, over to the SSD
+Optionally you could use rsync to copy via terminal:
 ```
 sudo apt-get update
 sudo apt-get install rsync
 
-rsync -av --progress '/rootfs/location' '/mnt/yourssd'
+rsync -av --progress 'system.img.raw' '/yourssd/path'
 ```
-Once the copy has been completed cd over to the rootfs folder located in your ssd partition and flash
+Once the copy has been completed, head back over to the Jetson and flash
 ```
 sudo ./flash jetson-tx2 external
 ```
