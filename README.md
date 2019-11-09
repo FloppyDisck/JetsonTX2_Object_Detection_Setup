@@ -19,13 +19,13 @@ Check the PARTUUID again
 ```
 sudo mkfs.ext4 /dev/${drive}${partition_number}
 ```
-Copy rootfs (system.img.raw), found in the computer used to flash the jetson, over to the SSD
+Copy rootfs (root filesystem), found in your sdk download location over in your flash computer /Downloads/nvidia/sdkm_downloads/Jetson_Linux_R32.2.1_aarch64.tbz2 over to the SSD
 Optionally you could use rsync to copy via terminal:
 ```
 sudo apt-get update
 sudo apt-get install rsync
 
-rsync -av --progress 'system.img.raw' '/yourssd/path'
+rsync -av --progress 'Jetson_Linux_R32.2.1_aarch64.tbz2' '/yourssd/path'
 ```
 Once the copy has been completed, head back over to the Jetson and flash
 ```
