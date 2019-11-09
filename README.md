@@ -7,27 +7,27 @@ After the initial setup create a GPT and partition with gdisk on the ssd
 ```
 sudo gdisk /dev/${drive}
 ```
-Check and copy that partition UUID
-```
-sudo blkid /dev/${drive}${partition_number}
-```
-Copy that PARTUUID over to l4t-rootfs-uuid.txt
-```
-sudo nano /Linux_for_Tegra/bootloader/l4t-rootfs-uuid.txt
-```
-Check the PARTUUID again
+Format and copy that PARTUUID
 ```
 sudo mkfs.ext4 /dev/${drive}${partition_number}
+sudo blkid /dev/${drive}${partition_number}
 ```
-Copy rootfs (root filesystem), found in your sdk download location over in your flash computer /Downloads/nvidia/sdkm_downloads/Jetson_Linux_R32.2.1_aarch64.tbz2 over to the SSD
-Optionally you could use rsync to copy via terminal:
-```
-sudo apt-get update
-sudo apt-get install rsync
 
-rsync -av --progress 'Jetson_Linux_R32.2.1_aarch64.tbz2' '/yourssd/path'
+In the computer you installed the SDK files, head over to the download location and extract the downloaded release package
+https://developer.nvidia.com/embedded/linux-tegra
+Download Sample Root Filesystem of the specified SDK version and extract them over to ${L4T_RELEASE_PACKAGE}/Linux_for_Tegra/rootfs/
+Copy that PARTUUID over to ${L4T_RELEASE_PACKAGE}/Linux_for_Tegra/bootloader/l4t-rootfs-uuid.txt (if file not present then create it)
 ```
-Once the copy has been completed, head back over to the Jetson and flash
+sudo nano /Linux_for_Tegra/bootloader/l4t-rootfs-uuid.txt
+
+sudo tar xpf ${L4T_RELEASE_PACKAGE}
+cd Linux_for_Tegra/rootfs/
+sudo tar xpf ../../${SAMPLE_FS_PACKAGE}
+cd ..
+sudo ./apply_binaries.sh
+```
+After this copy the rootfs/ contents to the SSD and boot Jetson in recovery mode
+Head over to the Linux_for_Tegra file and flash
 ```
 sudo ./flash jetson-tx2 external
 ```
